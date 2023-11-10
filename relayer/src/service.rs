@@ -393,7 +393,7 @@ fn print_relay_targets(manager_deps: &ManagerDeps) {
 }
 
 /// Builds the internal components for the relayer service and spawns asynchronous tasks.
-fn new_relay_base(config: Configuration) -> Result<RelayBase, ServiceError> {
+pub fn new_relay_base(config: Configuration) -> Result<RelayBase, ServiceError> {
 	assert_configuration_validity(&config);
 
 	let bootstrap_shared_data = BootstrapSharedData::new(&config);
@@ -413,7 +413,7 @@ fn new_relay_base(config: Configuration) -> Result<RelayBase, ServiceError> {
 	})
 }
 
-struct RelayBase {
+pub struct RelayBase {
 	/// The task manager of the relayer.
 	task_manager: TaskManager,
 }
