@@ -393,7 +393,7 @@ pub fn print_relay_targets(manager_deps: &ManagerDeps) {
 }
 
 /// Builds the internal components for the relayer service and spawns asynchronous tasks.
-pub fn new_relay_base(config: Configuration) -> Result<RelayBase, ServiceError> {
+fn new_relay_base(config: Configuration) -> Result<RelayBase, ServiceError> {
 	assert_configuration_validity(&config);
 
 	let bootstrap_shared_data = BootstrapSharedData::new(&config);
@@ -429,7 +429,7 @@ pub struct ManagerDeps {
 	event_senders: Vec<Arc<EventSender>>,
 }
 
-struct PeriodicDeps {
+pub struct PeriodicDeps {
 	/// The `HeartbeatSender` used for system health checks.
 	heartbeat_sender: HeartbeatSender<Http>,
 	/// The `OraclePriceFeeder` used for price feeding.
@@ -438,7 +438,7 @@ struct PeriodicDeps {
 	roundup_emitter: RoundupEmitter<Http>,
 }
 
-struct HandlerDeps {
+pub struct HandlerDeps {
 	/// The `BridgeRelayHandler`'s for each specified chain.
 	bridge_relay_handlers: Vec<BridgeRelayHandler<Http>>,
 	/// The `RoundupRelayHandler`'s for each specified chain.
