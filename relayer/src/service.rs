@@ -39,7 +39,7 @@ pub fn relay(config: Configuration) -> Result<TaskManager, ServiceError> {
 }
 
 /// Initializes periodic components.
-fn construct_periodics(
+pub fn construct_periodics(
 	bootstrap_shared_data: BootstrapSharedData,
 	relayer_deps: &ManagerDeps,
 ) -> PeriodicDeps {
@@ -70,7 +70,7 @@ fn construct_periodics(
 }
 
 /// Initializes `BridgeRelay` & `RoundUp` handlers.
-fn construct_handlers(
+pub fn construct_handlers(
 	config: &Configuration,
 	manager_deps: &ManagerDeps,
 	bootstrap_shared_data: BootstrapSharedData,
@@ -107,7 +107,7 @@ fn construct_handlers(
 }
 
 /// Initializes the `EthClient`, `TransactionManager`, `BlockManager`, `EventSender` for each chain.
-fn construct_managers(
+pub fn construct_managers(
 	config: &Configuration,
 	bootstrap_shared_data: BootstrapSharedData,
 ) -> ManagerDeps {
@@ -195,7 +195,7 @@ fn construct_managers(
 }
 
 /// Spawn relayer service tasks by the `TaskManager`.
-fn spawn_relayer_tasks(
+pub fn spawn_relayer_tasks(
 	task_manager: TaskManager,
 	deps: FullDeps,
 	config: &Configuration,
@@ -356,7 +356,7 @@ fn spawn_relayer_tasks(
 }
 
 /// Log the configured relay targets.
-fn print_relay_targets(manager_deps: &ManagerDeps) {
+pub fn print_relay_targets(manager_deps: &ManagerDeps) {
 	let tx_managers = &manager_deps.tx_managers;
 
 	log::info!(
@@ -418,7 +418,7 @@ pub struct RelayBase {
 	task_manager: TaskManager,
 }
 
-struct ManagerDeps {
+pub struct ManagerDeps {
 	/// The `EthClient`'s for each specified chain.
 	clients: Vec<Arc<EthClient<Http>>>,
 	/// The `TransactionManager`'s for each specified chain.
@@ -446,7 +446,7 @@ struct HandlerDeps {
 }
 
 /// The relayer client dependencies.
-struct FullDeps {
+pub struct FullDeps {
 	bootstrap_shared_data: BootstrapSharedData,
 	manager_deps: ManagerDeps,
 	periodic_deps: PeriodicDeps,

@@ -1,3 +1,3 @@
 mod cli;
 pub mod service;
-mod verification;
+pub mod verification;
