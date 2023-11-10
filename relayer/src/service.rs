@@ -447,8 +447,8 @@ pub struct HandlerDeps {
 
 /// The relayer client dependencies.
 pub struct FullDeps {
-	bootstrap_shared_data: BootstrapSharedData,
-	manager_deps: ManagerDeps,
-	periodic_deps: PeriodicDeps,
-	handler_deps: HandlerDeps,
+	pub bootstrap_shared_data: BootstrapSharedData,
+	pub manager_deps: ManagerDeps,
+	pub periodic_deps: PeriodicDeps,
+	pub handler_deps: HandlerDeps,
 }
